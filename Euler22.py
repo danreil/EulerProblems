@@ -50,14 +50,24 @@ def detect_best_hand(hand_array):
     :param hand_array: output of convert_hand. A numpy record array
     :return: TBD
     """
-    def detect_straight(hand_array):
-        # As an example, might change. But try detecting a straight, and return highest number in straight
-        ranks = hand_array.ranks
-        for i in range(num_cards):
+    pass
+
+def detect_straight(hand_array):
+    # As an example, might change. But try detecting a straight, and return highest number in straight
+    ranks = hand_array.ranks
+    result = True
+    for i in range(num_cards-1):
+        if ranks[i] != ranks[i+1] + 1:
+            result = False
+    # Note, haven't implemented the option of ace being low. Not sure if it should or not
+    return result, ranks[num_cards-1]
+    
 
 
-
-
-hand_test = player1[6]
+hand_test = player2[14]
+print(hand_test)
 convert_hand_test = convert_hand(hand_test)
+print(convert_hand_test.ranks)
+print(convert_hand_test.suits)
+is_straight, high_card = detect_straight(convert_hand_test)
 print(convert_hand_test)
